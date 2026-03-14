@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Mastery" />
+  <title>Account Mastery — Tekton</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SPLASH / LOADING -->
+  <div id="splash">
+    <div class="splash-logo">
+      <div class="splash-mark">
+        <span>T</span>
+      </div>
+      <p class="splash-wordmark">TEKTON</p>
+      <p class="splash-sub">Account Mastery</p>
+    </div>
+  </div>
+
+  <!-- APP SHELL -->
+  <div id="app" class="hidden">
+
+    <!-- NAV BAR -->
+    <nav class="navbar">
+      <div class="nav-logo">
+        <span class="nav-mark">T</span>
+        <span class="nav-title">Account Mastery</span>
+      </div>
+      <div class="nav-actions">
+        <button class="nav-btn" id="btn-settings" title="Settings">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- TAB BAR -->
+    <div class="tabbar">
+      <button class="tab active" data-view="targets">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="9" cy="9" r="1" fill="currentColor"/>
+        </svg>
+        <span>Targets</span>
+      </button>
+      <button class="tab" data-view="bench">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <rect x="2" y="5" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M6 5V4a3 3 0 016 0v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>Bench</span>
+      </button>
+      <button class="tab" data-view="maintenance">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M9 2l1.8 3.6L15 6.27l-3 2.92.7 4.1L9 11.4l-3.7 1.9.7-4.1L3 6.27l4.2-.67z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <span>Secured</span>
+      </button>
+    </div>
+
+    <!-- VIEWS -->
+    <main class="view-container">
+
+      <!-- TARGETS VIEW -->
+      <section id="view-targets" class="view active">
+        <div class="view-header">
+          <h1>Target Accounts</h1>
+          <p class="view-sub">5 active pursuit slots</p>
+        </div>
+        <div id="targets-list" class="accounts-grid"></div>
+      </section>
+
+      <!-- BENCH VIEW -->
+      <section id="view-bench" class="view">
+        <div class="view-header">
+          <h1>On the Bench</h1>
+          <p class="view-sub">Accounts paused — progress saved</p>
+        </div>
+        <div id="bench-list" class="accounts-grid"></div>
+        <div id="bench-empty" class="empty-state hidden">
+          <div class="empty-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="4" y="8" width="24" height="18" rx="3" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M10 8V6a6 6 0 0112 0v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p>No accounts on the bench yet.</p>
+          <p class="empty-hint">Move a target here to free up a pursuit slot.</p>
+        </div>
+      </section>
+
+      <!-- MAINTENANCE VIEW -->
+      <section id="view-maintenance" class="view">
+        <div class="view-header">
+          <h1>Secured Accounts</h1>
+          <p class="view-sub">Closed &amp; in maintenance</p>
+        </div>
+        <div id="maintenance-list" class="secured-grid"></div>
+        <div id="maintenance-empty" class="empty-state hidden">
+          <div class="empty-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 3l2.9 5.8L26 9.8l-5 4.8 1.2 6.7L16 18.3l-6.2 3 1.2-6.7-5-4.8 7.1-1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p>No secured accounts yet.</p>
+          <p class="empty-hint">Complete all 5 mastery levels to secure an account.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ========== MODALS ========== -->
+
+  <!-- ACCOUNT DETAIL MODAL -->
+  <div id="modal-account" class="modal-overlay hidden">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <div class="modal-content" id="modal-account-content"></div>
+    </div>
+  </div>
+
+  <!-- ADD / EDIT ACCOUNT MODAL -->
+  <div id="modal-edit" class="modal-overlay hidden">
+    <div class="modal-sheet modal-sheet--sm">
+      <div class="modal-handle"></div>
+      <div class="modal-content">
+        <h2 id="edit-title">Add Account</h2>
+        <div class="form-group">
+          <label>Company Name</label>
+          <input type="text" id="edit-company" placeholder="e.g. ProTech Auto Styling" maxlength="60" />
+        </div>
+        <div class="form-group">
+          <label>Primary Contact</label>
+          <input type="text" id="edit-contact" placeholder="Name & title" maxlength="60" />
+        </div>
+        <div class="form-group">
+          <label>City / Region</label>
+          <input type="text" id="edit-location" placeholder="e.g. Calgary, AB" maxlength="60" />
+        </div>
+        <div class="form-group">
+          <label>Notes</label>
+          <textarea id="edit-notes" placeholder="Any context, intro source, etc." rows="3" maxlength="400"></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn-ghost" id="edit-cancel">Cancel</button>
+          <button class="btn-primary" id="edit-save">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETTINGS MODAL -->
+  <div id="modal-settings" class="modal-overlay hidden">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <div class="modal-content">
+        <h2>Settings</h2>
+        <p class="settings-intro">Configure the milestones required to progress through each mastery level.</p>
+        <div id="settings-levels"></div>
+        <div class="form-actions" style="margin-top:2rem">
+          <button class="btn-ghost" id="settings-reset">Reset Defaults</button>
+          <button class="btn-primary" id="settings-save">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIRM MODAL -->
+  <div id="modal-confirm" class="modal-overlay hidden">
+    <div class="modal-sheet modal-sheet--xs">
+      <div class="modal-handle"></div>
+      <div class="modal-content">
+        <h2 id="confirm-title">Are you sure?</h2>
+        <p id="confirm-msg" class="confirm-msg"></p>
+        <div class="form-actions">
+          <button class="btn-ghost" id="confirm-cancel">Cancel</button>
+          <button class="btn-danger" id="confirm-ok">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD TO TARGET SLOT MODAL (when bench → target) -->
+  <div id="modal-slot" class="modal-overlay hidden">
+    <div class="modal-sheet modal-sheet--sm">
+      <div class="modal-handle"></div>
+      <div class="modal-content">
+        <h2>Move to Targets</h2>
+        <p class="confirm-msg">Select which target slot to fill, or swap with an existing target (it moves to bench).</p>
+        <div id="slot-list"></div>
+        <div class="form-actions">
+          <button class="btn-ghost" id="slot-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
