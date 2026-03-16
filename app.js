@@ -9,7 +9,7 @@
 const MAX_TARGETS = 5;
 const STORAGE_KEY = 'tekton_mastery_v1';
 
-const LEVEL_COLORS = ['#5a9fd4','#7a7fd4','#a06dd4','#d46dab','#e8a020'];
+const LEVEL_COLORS = ['#5ed45a','#334bd3','#b861e0','#e65064','#e8a020'];
 const LEVEL_NAMES  = ['Prospecting','Engaged','Evaluating','Committed','Secured'];
 
 const DEFAULT_LEVELS = [
@@ -17,26 +17,26 @@ const DEFAULT_LEVELS = [
     name: 'Prospecting',
     description: 'Making first contact',
     milestones: [
-      'Key decision-maker identified',
       'Initial contact made (call / email / visit)',
-      'Company profile researched',
+      'Key decision-maker(s) identified',
+      'Company profile and contacts entered into HubSpot',
     ]
   },
   {
     name: 'Engaged',
     description: 'Relationship building',
     milestones: [
-      'In-person meeting or demo completed',
-      'Film samples / product left with account',
-      'Pain points and current supplier identified',
+      'Pain points with current supplier identified',
+      'Rough annual revenue estimated',
+      'In-person meeting or demo scheduled',
     ]
   },
   {
     name: 'Evaluating',
     description: 'Presenting the solution',
     milestones: [
-      'Formal quote or proposal sent',
-      'Pricing objections addressed',
+      'Demo completed',
+      'Product evaluation debrief',
       'Follow-up call or visit completed',
     ]
   },
@@ -44,18 +44,18 @@ const DEFAULT_LEVELS = [
     name: 'Committed',
     description: 'Closing the deal',
     milestones: [
-      'Trial install or pilot agreed',
-      'Decision-maker verbal commitment received',
-      'Contract / pricing agreement in progress',
+      'New Customer Information From completed',
+      'First order placed by customer',
+      'Update HubSpot customer data',
     ]
   },
   {
     name: 'Secured',
-    description: 'Account won',
+    description: 'Account Secured',
     milestones: [
-      'First order placed or contract signed',
+      'Second order placed by customer',
       'Account onboarded and trained',
-      'Reorder cadence / stocking plan agreed',
+      'Exclusive Tekton Customer',
     ]
   }
 ];
